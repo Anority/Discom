@@ -142,7 +142,7 @@ client.Dispatcher.on('GATEWAY_READY', () => {
   setTimeout(() => {
     if (!nconf.get('STREAM_ROLE')) {
       return;
-    } else if (!nconf.get('STREAMCHANNEL')) {
+    } else if (!nconf.get('STREAM_CHANNEL')) {
       client.Users.fetchMembers();
       setInterval(() => {
         R.forEach(user => {
