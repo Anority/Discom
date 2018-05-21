@@ -1,0 +1,26 @@
+module.exports = {
+  // *Required* Bot token, used for being able to use the bot.
+  // Can be found in your bots application page. https://discordapp.com/developers/applications/me
+  TOKEN: '',
+
+  // Cleverbot API key, used for talking with `!chat`.
+  // Get a key here. https://www.cleverbot.com/api
+  CLEVERBOT: '',
+
+  // Almanax Channel ID, used for showing Almanax daily.
+  // Must be an empty channel where no one except the bot can send messages.
+  ALMANAX: '',
+
+  // Stream Role ID, used for giving a role to current streamers, usually to display them above.
+  // The role must be made on Discord yourself.
+  STREAM_ROLE: '',
+
+  // Stream Channel ID, used for limiting the above role to a specific group of people.
+  // If this is not set then the role will be given to anyone in the server who is streaming.
+  STREAM_CHANNEL: '',
+
+  // Twitter Channel IDs, used for deleting retweets and mentions, useful if using Twitter Webhooks.
+  // Can be set for one or two channels.
+  TWITTER_ONE: '',
+  TWITTER_TWO: ''
+};
