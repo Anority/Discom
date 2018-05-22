@@ -45,8 +45,11 @@
 
 
 5. You need to invite your bot to your server, to do so you must go to the [Discord Bot Website](https://discordapp.com/developers/applications/me) and copypaste the Client ID at the top into this URL: https://discordapp.com/oauth2/authorize?client_id=CLIENT_ID_HERE&scope=bot&permissions=268528640
+
       5a. You must enable [2 Factor Authentification](https://support.discordapp.com/hc/en-us/articles/219576828-Setting-up-Two-Factor-Authentication) to use the Streaming Role or Twitter features.
+      
       5b. If you do not need to use the Streaming Role or Twitter features, then use this URL: https://discordapp.com/oauth2/authorize?client_id=CLIENT_ID_HERE&scope=bot&permissions=84992
+      
       5c. You must have **Manage Server** permission on the server you're inviting the bot to, or have someone who has the permission invite it.
 
 
