@@ -171,7 +171,7 @@ client.Dispatcher.on('GATEWAY_READY', () => {
     } else {
       setInterval(() => {
         R.forEach(user => {
-          if (user.hasRole(nconf.get('STREAMER_ROLE'))) {
+          if (user.hasRole(nconf.get('STREAMER_ROLE')) === true) {
             if (user.hasRole(nconf.get('STREAMING_ROLE')) === true && user.game !== null) {
               if (user.game.type === 1) {
                 return; // ROLE, GAME, STREAM
