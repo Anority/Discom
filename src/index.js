@@ -136,34 +136,34 @@ client.Dispatcher.on('GATEWAY_READY', () => {
             });
           }
         });
-      }, 600000);
+      }, 600000);  // 600000 = 10 minutes
     }
   }, 3000);
   setTimeout(() => {
-    if (!nconf.get('STREAM_ROLE')) {
+    if (!nconf.get('STREAMING_ROLE')) {
       return;
-    } else if (!nconf.get('STREAM_CHANNEL')) {
+    } else if (!nconf.get('STREAMER_ROLE')) {
       client.Users.fetchMembers();
       setInterval(() => {
         R.forEach(user => {
-          if (user.hasRole(nconf.get('STREAM_ROLE')) === true && user.game !== null) {
+          if (user.hasRole(nconf.get('STREAMING_ROLE')) === true && user.game !== null) {
             if (user.game.type === 1) {
               return; // ROLE, GAME, STREAM
             } else {
-              user.unassignRole(nconf.get('STREAM_ROLE'));
+              user.unassignRole(nconf.get('STREAMING_ROLE'));
               return; // ROLE, GAME, NO STREAM
             }
-          } else if (user.hasRole(nconf.get('STREAM_ROLE')) !== true && user.game !== null) {
+          } else if (user.hasRole(nconf.get('STREAMING_ROLE')) !== true && user.game !== null) {
             if (user.game.type === 1) {
               user.assignRole(nconf.get('STREAM_ROLE'));
               return; // NO ROLE, GAME, STREAM
             } else {
               return; // NO ROLE, GAME, NO STREAM
             }
-          } else if (user.hasRole(nconf.get('STREAM_ROLE')) === true && user.game === null) {
-            user.unassignRole(nconf.get('STREAM_ROLE'));
+          } else if (user.hasRole(nconf.get('STREAMING_ROLE')) === true && user.game === null) {
+            user.unassignRole(nconf.get('STREAMING_ROLE'));
             return; // ROLE, NO GAME
-          } else if (user.hasRole(nconf.get('STREAM_ROLE')) !== true && user.game === null) {
+          } else if (user.hasRole(nconf.get('STREAMING_ROLE')) !== true && user.game === null) {
             return; // NO ROLE, NO GAME
           };
         }, client.Users);
@@ -171,27 +171,31 @@ client.Dispatcher.on('GATEWAY_READY', () => {
     } else {
       setInterval(() => {
         R.forEach(user => {
-          if (user.hasRole(nconf.get('STREAM_ROLE')) === true && user.game !== null) {
-            if (user.game.type === 1) {
-              return; // ROLE, GAME, STREAM
-            } else {
-              user.unassignRole(nconf.get('STREAM_ROLE'));
-              return; // ROLE, GAME, NO STREAM
-            }
-          } else if (user.hasRole(nconf.get('STREAM_ROLE')) !== true && user.game !== null) {
-            if (user.game.type === 1) {
-              user.assignRole(nconf.get('STREAM_ROLE'));
-              return; // NO ROLE, GAME, STREAM
-            } else {
-              return; // NO ROLE, GAME, NO STREAM
-            }
-          } else if (user.hasRole(nconf.get('STREAM_ROLE')) === true && user.game === null) {
-            user.unassignRole(nconf.get('STREAM_ROLE'));
-            return; // ROLE, NO GAME
-          } else if (user.hasRole(nconf.get('STREAM_ROLE')) !== true && user.game === null) {
-            return; // NO ROLE, NO GAME
-          };
-        }, client.Channels.find(channel => channel.id === nconf.get('STREAM_CHANNEL')).members);
+          if (user.hasRole(nconf.get('STREAMER_ROLE') {
+            if (user.hasRole(nconf.get('STREAMING_ROLE')) === true && user.game !== null) {
+              if (user.game.type === 1) {
+                return; // ROLE, GAME, STREAM
+              } else {
+                user.unassignRole(nconf.get('STREAMING_ROLE'));
+                return; // ROLE, GAME, NO STREAM
+              }
+            } else if (user.hasRole(nconf.get('STREAMING_ROLE')) !== true && user.game !== null) {
+              if (user.game.type === 1) {
+                user.assignRole(nconf.get('STREAMING_ROLE'));
+                return; // NO ROLE, GAME, STREAM
+              } else {
+                return; // NO ROLE, GAME, NO STREAM
+              }
+            } else if (user.hasRole(nconf.get('STREAMING_ROLE')) === true && user.game === null) {
+              user.unassignRole(nconf.get('STREAMING_ROLE'));
+              return; // ROLE, NO GAME
+            } else if (user.hasRole(nconf.get('STREAMING_ROLE')) !== true && user.game === null) {
+              return; // NO ROLE, NO GAME
+            };
+          } else {
+            return;
+          }
+        }, client.Users);
       }, 60000); // 60000 = 1 minute
     }
   }, 6000);
