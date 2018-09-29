@@ -11,13 +11,13 @@ module.exports = {
   // Must be an empty channel where no one except the bot can send messages.
   ALMANAX: '',
 
-  // Stream Role ID, used for giving a role to current streamers, usually to display them above.
+  // Streaming Role ID, used for giving a role to people who are currently streaming, usually to display them above.
   // The role must be made on Discord yourself.
-  STREAM_ROLE: '',
+  STREAMING_ROLE: '',
 
-  // Stream Channel ID, used for limiting the above role to a specific group of people.
+  // Streamer Role ID, used for limiting the above role to a specific group of people that have this role.
   // If this is not set then the role will be given to anyone in the server who is streaming.
-  STREAM_CHANNEL: '',
+  STREAMER_ROLE: '',
 
   // Twitter Channel IDs, used for deleting retweets and mentions, useful if using Twitter Webhooks.
   // Can be set for one or two channels.
