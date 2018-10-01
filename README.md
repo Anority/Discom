@@ -42,6 +42,8 @@
 
 ![Role ID](https://cdn.discordapp.com/attachments/279289541070946304/496317422895235082/Role_ID.png)
 
+![Mention](https://cdn.discordapp.com/attachments/279289541070946304/496319109051711498/Mention.png)
+
 ![User Settings](https://cdn.discordapp.com/attachments/279289541070946304/496318158928478208/User_Settings.png)
 
 ![Developer Mode](https://cdn.discordapp.com/attachments/279289541070946304/496318206378770432/Developer_Mode.png)
