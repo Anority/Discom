@@ -129,7 +129,7 @@ client.on('ready', () => {
         R.forEach(user => {
           if (user.roles.has(nconf.get('STREAMING_ROLE')) !== true && user.roles.has('91854670766559232') === true) {
             // user.addRole(nconf.get('STREAMING_ROLE'));
-            console.log('1' + user.name + user.presence.game);
+            console.log('1' + user.nickname + user.presence.game.streaming);
             return;
           } else if (user.roles.has(nconf.get('STREAMING_ROLE')) === true) {
             // user.removeRole(nconf.get('STREAMING_ROLE'));
