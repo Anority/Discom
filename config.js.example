@@ -23,7 +23,11 @@ module.exports = {
   // The role must be made on Discord yourself.
   STREAMING_ROLE: '',
 
-  // Streamer Role ID, used for limiting the above role to a specific group of people that have this role.
-  // If this is not set then the role will be given to anyone in the server who is streaming.
-  STREAMER_ROLE: ''
+  // Streamer Role ID, used for limiting the Streaming role to a specific group of people that have this role.
+  // If this or STREAMER_GAME is not set then the role will be given to anyone in the server who is streaming anything.
+  STREAMER_ROLE: '',
+  
+  // Streamer Role ID, used for limiting the Streaming role to a specific group of people that stream this game.
+  // If this or STREAMER_ROLE is not set then the role will be given to anyone in the server who is streaming anything.
+  STREAMER_GAME: ''
 };
