@@ -33,6 +33,8 @@
       4d. To get a Server ID, you must right click on a Server and select Copy ID. (Need to enable Developer Mode in User Settings -> Appearance)
   
       4e. To get a Role ID, you must put \ before mentioning it (e.g. \@Streamer) and copy the number part. (Need to allow anyone to @mention the role in the Role's settings)
+      
+      4f. To get a Game name, you must click on a user who is playing the game and use the name from there.
 
 ![Config](https://cdn.discordapp.com/attachments/279289541070946304/496316976885661696/Config.png)
 
@@ -41,6 +43,8 @@
 ![Server ID](https://cdn.discordapp.com/attachments/279289541070946304/496318050962898949/Server_ID.png)
 
 ![Role ID](https://cdn.discordapp.com/attachments/279289541070946304/496317422895235082/Role_ID.png)
+
+![Game](https://cdn.discordapp.com/attachments/279289541070946304/496333308913909763/Game.png)
 
 ![Mention](https://cdn.discordapp.com/attachments/279289541070946304/496319109051711498/Mention.png)
 
