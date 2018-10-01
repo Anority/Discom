@@ -2,23 +2,23 @@
 
 1. Create a [Github](https://www.github.com) account and Fork Discom. (Button in the top right)
 
-![Fork](https://cdn.discordapp.com/attachments/154633557606662144/448290067170197524/Fork.png)
+![Fork](https://cdn.discordapp.com/attachments/279289541070946304/496316781174980618/Fork.png)
 
 
 
 
 2. Create a [Heroku](https://www.heroku.com) account and Create a New App. (Button in the top right)
 
-![App](https://cdn.discordapp.com/attachments/154633557606662144/448291245744193538/App.png)
+![App](https://cdn.discordapp.com/attachments/279289541070946304/496316837198561280/App.png)
 
 
 
 
 3. Go to your Heroku app Settings tab, click Add Buildpack and select NodeJS.
 
-![Settings](https://cdn.discordapp.com/attachments/154633557606662144/448292111880814603/Settings.png)
+![Settings](https://cdn.discordapp.com/attachments/279289541070946304/496316887823810561/Settings.png)
 
-![Buildpack](https://cdn.discordapp.com/attachments/154633557606662144/448292646813827073/Buildpack.png)
+![Buildpack](https://cdn.discordapp.com/attachments/279289541070946304/496316925790650388/Buildpack.png)
 
 
 
@@ -29,18 +29,22 @@
       4b. TOKEN is required, everything else is optional. (Token is not Client Secret in the Discord Bot Website, it is near the bottom)
   
       4c. To get a Channel ID, you must right click on a Text Channel and select Copy ID. (Need to enable Developer Mode in User Settings -> Appearance)
+      
+      4d. To get a Server ID, you must right click on a Server and select Copy ID. (Need to enable Developer Mode in User Settings -> Appearance)
   
-      4d. To get a Role ID, you must right click on a Role when you @mention it and select Copy ID. (Need to allow anyone to @mention the role in the Role's settings and enable Developer Mode in User Settings -> Appearance)
+      4e. To get a Role ID, you must put \ before mentioning it (e.g. \@Streamer) and copy the number part. (Need to allow anyone to @mention the role in the Role's settings)
 
-![Config](https://cdn.discordapp.com/attachments/154633557606662144/448296346923827200/Config.png)
+![Config](https://cdn.discordapp.com/attachments/279289541070946304/496316976885661696/Config.png)
 
-![Channel ID](https://cdn.discordapp.com/attachments/154633557606662144/448296589132431362/Channel_ID.png)
+![Channel ID](https://cdn.discordapp.com/attachments/279289541070946304/496317016613847061/Channel_ID.png)
 
-![Role ID](https://cdn.discordapp.com/attachments/154633557606662144/448297218638741524/Role_ID.png)
+![Server ID](https://cdn.discordapp.com/attachments/279289541070946304/496318050962898949/Server_ID.png)
 
-![User Settings](https://cdn.discordapp.com/attachments/154633557606662144/448296046028652544/User_Settings.png)
+![Role ID](https://cdn.discordapp.com/attachments/279289541070946304/496317422895235082/Role_ID.png)
 
-![Developer Mode](https://cdn.discordapp.com/attachments/154633557606662144/448296057957384193/Developer_Mode.png)
+![User Settings](https://cdn.discordapp.com/attachments/279289541070946304/496318158928478208/User_Settings.png)
+
+![Developer Mode](https://cdn.discordapp.com/attachments/279289541070946304/496318206378770432/Developer_Mode.png)
 
 
 
@@ -56,12 +60,12 @@
 
 6. In the Deploy tab, click on Github to connect your Github account, then search for Discom and click Connect.
 
-![Deploy](https://cdn.discordapp.com/attachments/154633557606662144/448297712065052672/Deploy.png)
+![Deploy](https://cdn.discordapp.com/attachments/279289541070946304/496318339874947074/Deploy.png)
 
-![Github](https://cdn.discordapp.com/attachments/154633557606662144/448298566512017408/Github.png)
+![Github](https://cdn.discordapp.com/attachments/279289541070946304/496318352805855242/Github.png)
 
 
 
 7. Click on Deploy Branch.
 
-![Branch](https://cdn.discordapp.com/attachments/154633557606662144/448301079583653898/Branch.png)
+![Branch](https://cdn.discordapp.com/attachments/279289541070946304/496318363769765913/Branch.png)
