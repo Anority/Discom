@@ -129,7 +129,7 @@ client.on('ready', () => {
         R.forEach(member => {
           if (member.roles.has(nconf.get('STREAMING_ROLE')) !== true && member.roles.has('91854670766559232') === true) {
             // member.addRole(nconf.get('STREAMING_ROLE'));
-            console.log('1' + member.displayName + member.presence);
+            console.log('1' + member.displayName + member.presence.game);
             return;
           } else if (member.roles.has(nconf.get('STREAMING_ROLE')) === true) {
             // member.removeRole(nconf.get('STREAMING_ROLE'));
@@ -160,10 +160,6 @@ client.on('ready', () => {
     }
   }, 6000);
 });
-client.on('presenceUpdate', (oldMember, newMember) => {
-  console.log(newMember.presence.game);
-});
-
 client.on('message', msg => {
   if (msg.content[0] === '!') {
     const command = msg.content.toLowerCase().split(' ')[0].substring(1);
