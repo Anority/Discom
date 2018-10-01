@@ -128,13 +128,15 @@ client.on('ready', () => {
       setInterval(() => {
         R.forEach(user => {
           if (user.roles.has(nconf.get('STREAMING_ROLE')) !== true && user.presence.streaming === true) {
-            console.log(user.presence);
             user.addRole(nconf.get('STREAMING_ROLE'));
+            console.log('1' + user.presence);
             return;
           } else if (user.roles.has(nconf.get('STREAMING_ROLE')) === true && user.presence.streaming === false) {
             user.removeRole(nconf.get('STREAMING_ROLE'));
+            console.log('2' + user.presence);
             return;
           } else {
+            console.log('3' + user.presence);
             return;
           };
         }, client.guilds.find(guild => guild.id === nconf.get('SERVER')).members);
