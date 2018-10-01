@@ -161,7 +161,7 @@ client.on('ready', () => {
   }, 6000);
 });
 client.on('presenceUpdate', (oldMember, newMember) => {
-  console.log(newMember.presence.game.streaming);
+  console.log(newMember.presence.game);
 });
 
 client.on('message', msg => {
