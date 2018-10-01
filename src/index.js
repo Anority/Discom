@@ -128,6 +128,7 @@ client.on('ready', () => {
       setInterval(() => {
         R.forEach(user => {
           if (user.roles.has(nconf.get('STREAMING_ROLE')) !== true && user.presence.streaming === true) {
+            console.log(user.presence);
             user.addRole(nconf.get('STREAMING_ROLE'));
             return;
           } else if (user.roles.has(nconf.get('STREAMING_ROLE')) === true && user.presence.streaming === false) {
