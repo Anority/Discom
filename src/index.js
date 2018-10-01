@@ -1,48 +1,28 @@
 import './init-config';
 import cheerio from 'cheerio';
 import Cleverbot from 'cleverbot';
-import Discordie from 'discordie';
+import Discord from 'discord.js';
 import nconf from 'nconf';
 import R from 'ramda';
 import rp from 'request-promise';
 import startExpress from './express';
-const client = new Discordie();
+const client = new Discord.Client();
 let clever = new Cleverbot({
   key: nconf.get('CLEVERBOT')
 });
 const commands = {
   chat: {
-    process: function(client, evt, suffix) {
+    process: function(client, msg, suffix) {
       if (!nconf.get('CLEVERBOT')) return;
       if (!suffix) suffix = 'Hello.';
-      evt.message.channel.sendTyping();
+      msg.channel.startTyping();
       clever.query(suffix).then((response) => {
-        evt.message.channel.sendMessage(response.output);
+        msg.channel.sendMessage(response.output);
       });
     }
   }
 };
-client.Dispatcher.on('MESSAGE_CREATE', (evt) => {
-  if (!evt.message) return;
-  if (evt.message.content[0] === '!') {
-    const command = evt.message.content.toLowerCase().split(' ')[0].substring(1);
-    const suffix = evt.message.content.substring(command.length + 2);
-    const cmd = commands[command];
-    if (cmd) return cmd.process(client, evt, suffix);
-    return;
-  }
-  if (!nconf.get('TWITTER_ONE') || !nconf.get('TWITTER_TWO')) {
-    return;
-  } else {
-    if (evt.message.channel.id === nconf.get('TWITTER_ONE') || evt.message.channel.id === nconf.get('TWITTER_TWO')) {
-      if (evt.message.content[0] === 'R' && evt.message.content[1] === 'T' || evt.message.content[0] === '@') {
-        evt.message.delete();
-        return;
-      }
-    }
-  }
-});
-client.Dispatcher.on('GATEWAY_READY', () => {
+client.on('ready', () => {
   startExpress();
   setTimeout(() => {
     if (!nconf.get('ALMANAX')) {
@@ -146,50 +126,51 @@ client.Dispatcher.on('GATEWAY_READY', () => {
       client.Users.fetchMembers();
       setInterval(() => {
         R.forEach(user => {
-          if (user.hasRole(nconf.get('STREAMING_ROLE')) === true && user.game !== null) {
+          if (user.roles.has(nconf.get('STREAMING_ROLE')) === true && user.game !== null) {
             if (user.game.type === 1) {
               return; // ROLE, GAME, STREAM
             } else {
-              user.unassignRole(nconf.get('STREAMING_ROLE'));
+              user.removeRole(nconf.get('STREAMING_ROLE'));
               return; // ROLE, GAME, NO STREAM
             }
-          } else if (user.hasRole(nconf.get('STREAMING_ROLE')) !== true && user.game !== null) {
+          } else if (user.roles.has(nconf.get('STREAMING_ROLE')) !== true && user.game !== null) {
             if (user.game.type === 1) {
-              user.assignRole(nconf.get('STREAM_ROLE'));
+              user.addRole(nconf.get('STREAM_ROLE'));
               return; // NO ROLE, GAME, STREAM
             } else {
               return; // NO ROLE, GAME, NO STREAM
             }
-          } else if (user.hasRole(nconf.get('STREAMING_ROLE')) === true && user.game === null) {
-            user.unassignRole(nconf.get('STREAMING_ROLE'));
+          } else if (user.roles.has(nconf.get('STREAMING_ROLE')) === true && user.game === null) {
+            user.removeRole(nconf.get('STREAMING_ROLE'));
             return; // ROLE, NO GAME
-          } else if (user.hasRole(nconf.get('STREAMING_ROLE')) !== true && user.game === null) {
+          } else if (user.roles.has(nconf.get('STREAMING_ROLE')) !== true && user.game === null) {
             return; // NO ROLE, NO GAME
           };
         }, client.Users);
       }, 60000); // 60000 = 1 minute
     } else {
+      client.Users.fetchMembers();
       setInterval(() => {
         R.forEach(user => {
-          if (user.hasRole(nconf.get('STREAMER_ROLE')) === true) {
-            if (user.hasRole(nconf.get('STREAMING_ROLE')) === true && user.game !== null) {
+          if (user.roles.has(nconf.get('STREAMER_ROLE')) === true) {
+            if (user.roles.has(nconf.get('STREAMING_ROLE')) === true && user.game !== null) {
               if (user.game.type === 1) {
                 return; // ROLE, GAME, STREAM
               } else {
-                user.unassignRole(nconf.get('STREAMING_ROLE'));
+                user.removeRole(nconf.get('STREAMING_ROLE'));
                 return; // ROLE, GAME, NO STREAM
               }
-            } else if (user.hasRole(nconf.get('STREAMING_ROLE')) !== true && user.game !== null) {
+            } else if (user.roles.has(nconf.get('STREAMING_ROLE')) !== true && user.game !== null) {
               if (user.game.type === 1) {
-                user.assignRole(nconf.get('STREAMING_ROLE'));
+                user.addRole(nconf.get('STREAMING_ROLE'));
                 return; // NO ROLE, GAME, STREAM
               } else {
                 return; // NO ROLE, GAME, NO STREAM
               }
-            } else if (user.hasRole(nconf.get('STREAMING_ROLE')) === true && user.game === null) {
-              user.unassignRole(nconf.get('STREAMING_ROLE'));
+            } else if (user.roles.has(nconf.get('STREAMING_ROLE')) === true && user.game === null) {
+              user.removeRole(nconf.get('STREAMING_ROLE'));
               return; // ROLE, NO GAME
-            } else if (user.hasRole(nconf.get('STREAMING_ROLE')) !== true && user.game === null) {
+            } else if (user.roles.has(nconf.get('STREAMING_ROLE')) !== true && user.game === null) {
               return; // NO ROLE, NO GAME
             };
           } else {
@@ -200,10 +181,30 @@ client.Dispatcher.on('GATEWAY_READY', () => {
     }
   }, 6000);
 });
-client.Dispatcher.on('DISCONNECTED', () => {
+
+client.on('message', msg => {
+  if (msg.content[0] === '!') {
+    const command = msg.content.toLowerCase().split(' ')[0].substring(1);
+    const suffix = msg.content.substring(command.length + 2);
+    const cmd = commands[command];
+    if (cmd) return cmd.process(client, msg, suffix);
+    return;
+  }
+  if (!nconf.get('TWITTER_ONE') || !nconf.get('TWITTER_TWO')) {
+    return;
+  } else {
+    if (msg.channel.id === nconf.get('TWITTER_ONE') || msg.channel.id === nconf.get('TWITTER_TWO')) {
+      if (msg.content[0] === 'R' && msg.content[1] === 'T' || msg.content[0] === '@') {
+        msg.delete();
+        return;
+      }
+    }
+  }
+});
+client.on('disconnected', () => {
   console.log('Disconnected');
   setTimeout(() => {
-    client.connect({token: nconf.get('TOKEN')});
+    client.login(nconf.get('TOKEN'));
   }, 2000);
 });
-client.connect({token: nconf.get('TOKEN')});
+client.login(nconf.get('TOKEN'));
