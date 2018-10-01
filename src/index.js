@@ -30,7 +30,7 @@ client.on('ready', () => {
       return;
     } else {
       setInterval(() => {
-        client.Channels.find(channel => channel.id === nconf.get('ALMANAX')).fetchMessages().then(messages => {
+        client.channels.find(channel => channel.id === nconf.get('ALMANAX')).fetchMessages().then(messages => {
           let text = '';
           let date = new Date();
           let year = date.getFullYear();
@@ -70,7 +70,7 @@ client.on('ready', () => {
                   let mainfr = $('#achievement_dofus .mid').first().children().remove('div.more').end().text().trim();
                   let bonusfr = $('#achievement_dofus .mid .more').first().children().remove('div.more-infos').end().text().trim();
                   text += `\n\n\n**${mainfr}**\n${bonusfr}\n\n**${questfr}**\n${offerfr}\n\n${image}`;
-                  return client.Channels.find(channel => channel.id === nconf.get('ALMANAX')).send(text);
+                  return client.channels.find(channel => channel.id === nconf.get('ALMANAX')).send(text);
                 }).catch((err) => {
                   return console.log(err);
                 });
@@ -108,7 +108,7 @@ client.on('ready', () => {
                 let mainfr = $('#achievement_dofus .mid').first().children().remove('div.more').end().text().trim();
                 let bonusfr = $('#achievement_dofus .mid .more').first().children().remove('div.more-infos').end().text().trim();
                 text += `\n\n\n**${mainfr}**\n${bonusfr}\n\n**${questfr}**\n${offerfr}\n\n${image}`;
-                return client.Channels.find(channel => channel.id === nconf.get('ALMANAX')).send(text);
+                return client.channels.find(channel => channel.id === nconf.get('ALMANAX')).send(text);
               }).catch((err) => {
                 return console.log(err);
               });
@@ -123,26 +123,22 @@ client.on('ready', () => {
   setTimeout(() => {
     if (!nconf.get('STREAMING_ROLE')) {
       return;
-    } else if (nconf.get('STREAMER_ROLE') && nconf.get('STREAMER_GAME')) {
+    } else if (!nconf.get('STREAMER_ROLE') && !nconf.get('STREAMER_GAME')) {
       client.guilds.find(guild => guild.id === nconf.get('SERVER')).fetchMembers();
       setInterval(() => {
         R.forEach(user => {
-          if (user.roles.has(nconf.get('STREAMER_ROLE')) === true) {
-            if (user.roles.has(nconf.get('STREAMING_ROLE')) !== true && user.presence.streaming === true && user.presence.game.name === nconf.get('STREAMER_GAME')) {
-              user.addRole(nconf.get('STREAMING_ROLE'));
-              return;
-            } else if (user.roles.has(nconf.get('STREAMING_ROLE')) === true && user.presence.streaming === false) {
-              user.removeRole(nconf.get('STREAMING_ROLE'));
-              return;
-            } else {
-              return;
-            };
+          if (user.roles.has(nconf.get('STREAMING_ROLE')) !== true && user.presence.streaming === true) {
+            user.addRole(nconf.get('STREAMING_ROLE'));
+            return;
+          } else if (user.roles.has(nconf.get('STREAMING_ROLE')) === true && user.presence.streaming === false) {
+            user.removeRole(nconf.get('STREAMING_ROLE'));
+            return;
           } else {
             return;
-          }
+          };
         }, client.guilds.find(guild => guild.id === nconf.get('SERVER')).members);
       }, 60000); // 60000 = 1 minute
-    } else if (nconf.get('STREAMER_ROLE')) {
+    } else if (nconf.get('STREAMER_ROLE') && !nconf.get('STREAMER_GAME')) {
       client.guilds.find(guild => guild.id === nconf.get('SERVER')).fetchMembers();
       setInterval(() => {
         R.forEach(user => {
@@ -161,7 +157,7 @@ client.on('ready', () => {
           }
         }, client.guilds.find(guild => guild.id === nconf.get('SERVER')).members);
       }, 60000); // 60000 = 1 minute
-    } else if (nconf.get('STREAMER_GAME')) {
+    } else if (nconf.get('STREAMER_GAME') && !nconf.get('STREAMER_ROLE')) {
       client.guilds.find(guild => guild.id === nconf.get('SERVER')).fetchMembers();
       setInterval(() => {
         R.forEach(user => {
@@ -180,15 +176,19 @@ client.on('ready', () => {
       client.guilds.find(guild => guild.id === nconf.get('SERVER')).fetchMembers();
       setInterval(() => {
         R.forEach(user => {
-          if (user.roles.has(nconf.get('STREAMING_ROLE')) !== true && user.presence.streaming === true) {
-            user.addRole(nconf.get('STREAMING_ROLE'));
-            return;
-          } else if (user.roles.has(nconf.get('STREAMING_ROLE')) === true && user.presence.streaming === false) {
-            user.removeRole(nconf.get('STREAMING_ROLE'));
-            return;
+          if (user.roles.has(nconf.get('STREAMER_ROLE')) === true) {
+            if (user.roles.has(nconf.get('STREAMING_ROLE')) !== true && user.presence.streaming === true && user.presence.game.name === nconf.get('STREAMER_GAME')) {
+              user.addRole(nconf.get('STREAMING_ROLE'));
+              return;
+            } else if (user.roles.has(nconf.get('STREAMING_ROLE')) === true && user.presence.streaming === false) {
+              user.removeRole(nconf.get('STREAMING_ROLE'));
+              return;
+            } else {
+              return;
+            };
           } else {
             return;
-          };
+          }
         }, client.guilds.find(guild => guild.id === nconf.get('SERVER')).members);
       }, 60000); // 60000 = 1 minute
     }
