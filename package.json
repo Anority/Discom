@@ -11,7 +11,7 @@
     "bluebird": "^3.5.1",
     "cheerio": "^0.22.0",
     "cleverbot": "^1.0.1",
-    "discordie": "qeled/discordie.git#dev",
+    "discord.js": "^11.4.2",
     "express": "^4.16.2",
     "forever": "^0.15.3",
     "nconf": "^0.10.0",
@@ -29,8 +29,8 @@
     "start": "node index.js"
   },
   "engines": {
-    "node": "8.9.4",
-    "npm": "5.6.0"
+    "node": "8.12.0",
+    "npm": "6.4.1"
   },
   "babel": {
     "presets": [
