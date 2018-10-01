@@ -206,7 +206,7 @@ client.on('message', msg => {
     return;
   } else {
     if (msg.channel.id === nconf.get('TWITTER_ONE') || msg.channel.id === nconf.get('TWITTER_TWO')) {
-      if (msg.content[0] === 'R' && msg.content[1] === 'T' || msg.content[0] === '@') {
+      if (msg.content[0] === 'R' && msg.content[1] === 'T' || msg.content[0] === '@' || msg.content.includes('#DWS') === true) {
         msg.delete();
         return;
       }
