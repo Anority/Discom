@@ -17,7 +17,8 @@ const commands = {
       if (!suffix) suffix = 'Hello.';
       msg.channel.startTyping();
       clever.query(suffix).then((response) => {
-        msg.channel.sendMessage(response.output);
+        msg.channel.send(response.output);
+        msg.channel.stopTyping();
       });
     }
   }
@@ -69,7 +70,7 @@ client.on('ready', () => {
                   let mainfr = $('#achievement_dofus .mid').first().children().remove('div.more').end().text().trim();
                   let bonusfr = $('#achievement_dofus .mid .more').first().children().remove('div.more-infos').end().text().trim();
                   text += `\n\n\n**${mainfr}**\n${bonusfr}\n\n**${questfr}**\n${offerfr}\n\n${image}`;
-                  return client.Channels.find(channel => channel.id === nconf.get('ALMANAX')).sendMessage(text);
+                  return client.Channels.find(channel => channel.id === nconf.get('ALMANAX')).send(text);
                 }).catch((err) => {
                   return console.log(err);
                 });
@@ -107,7 +108,7 @@ client.on('ready', () => {
                 let mainfr = $('#achievement_dofus .mid').first().children().remove('div.more').end().text().trim();
                 let bonusfr = $('#achievement_dofus .mid .more').first().children().remove('div.more-infos').end().text().trim();
                 text += `\n\n\n**${mainfr}**\n${bonusfr}\n\n**${questfr}**\n${offerfr}\n\n${image}`;
-                return client.Channels.find(channel => channel.id === nconf.get('ALMANAX')).sendMessage(text);
+                return client.Channels.find(channel => channel.id === nconf.get('ALMANAX')).send(text);
               }).catch((err) => {
                 return console.log(err);
               });
