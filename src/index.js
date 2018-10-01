@@ -124,7 +124,7 @@ client.on('ready', () => {
     if (!nconf.get('STREAMING_ROLE')) {
       return;
     } else if (!nconf.get('STREAMER_ROLE')) {
-      client.guilds.first.fetchMembers();
+      client.guilds.find(guild => guild.id === nconf.get('SERVER')).fetchMembers();
       setInterval(() => {
         R.forEach(user => {
           if (user.roles.has(nconf.get('STREAMING_ROLE')) === true && user.game !== null) {
@@ -150,7 +150,7 @@ client.on('ready', () => {
         }, client.Users);
       }, 60000); // 60000 = 1 minute
     } else {
-      client.guilds.first.fetchMembers();
+      client.guilds.find(guild => guild.id === nconf.get('SERVER')).fetchMembers();
       setInterval(() => {
         R.forEach(user => {
           if (user.roles.has(nconf.get('STREAMER_ROLE')) === true) {
