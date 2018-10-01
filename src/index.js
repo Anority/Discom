@@ -147,7 +147,7 @@ client.on('ready', () => {
           } else if (user.roles.has(nconf.get('STREAMING_ROLE')) !== true && user.game === null) {
             return; // NO ROLE, NO GAME
           };
-        }, client.Users);
+        }, client.users);
       }, 60000); // 60000 = 1 minute
     } else {
       client.guilds.find(guild => guild.id === nconf.get('SERVER')).fetchMembers();
@@ -177,7 +177,7 @@ client.on('ready', () => {
           } else {
             return;
           }
-        }, client.Users);
+        }, client.users);
       }, 60000); // 60000 = 1 minute
     }
   }, 6000);
