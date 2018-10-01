@@ -136,7 +136,6 @@ client.on('ready', () => {
             console.log('2' + user.presence);
             return;
           } else {
-            console.log('3' + user.presence);
             return;
           };
         }, client.guilds.find(guild => guild.id === nconf.get('SERVER')).members);
