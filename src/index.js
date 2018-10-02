@@ -31,7 +31,7 @@ client.on('ready', () => {
     } else {
       setInterval(() => {
         client.channels.find(channel => channel.id === nconf.get('ALMANAX')).fetchMessages().then(messages => {
-          console.log(messages);
+          console.log(messages.message);
           let text = '';
           let date = new Date();
           let year = date.getFullYear();
