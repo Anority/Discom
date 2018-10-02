@@ -31,6 +31,7 @@ client.on('ready', () => {
     } else {
       setInterval(() => {
         client.channels.find(channel => channel.id === nconf.get('ALMANAX')).fetchMessages().then(messages => {
+          console.log(messages);
           let text = '';
           let date = new Date();
           let year = date.getFullYear();
@@ -117,7 +118,7 @@ client.on('ready', () => {
             });
           }
         });
-      }, 600000);  // 600000 = 10 minutes
+      }, 60000);  // 600000 = 10 minutes
     }
   }, 3000);
   setTimeout(() => {
@@ -129,7 +130,7 @@ client.on('ready', () => {
         R.forEach(member => {
           if (member.roles.has(nconf.get('STREAMING_ROLE')) !== true && member.roles.has('91854670766559232') === true) {
             // member.addRole(nconf.get('STREAMING_ROLE'));
-            console.log('1' + member.displayName + member.presence.game);
+            // console.log('1' + member.displayName + member.presence.game);
             return;
           } else if (member.roles.has(nconf.get('STREAMING_ROLE')) === true) {
             // member.removeRole(nconf.get('STREAMING_ROLE'));
