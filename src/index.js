@@ -126,7 +126,7 @@ client.on('ready', () => {
     } else if (nconf.get('STREAMING_GAME')) {
       setInterval(() => {
         R.forEach(member => {
-          client.guilds.find(guild => guild.id === nconf.get('SERVER')).fetchMember(member.id).then(member => {
+          client.guilds.find(guild => guild.id === nconf.get('SERVER')).fetchMember(member.id).then((member) => {
             console.log(member.displayName + member.presence.game);
           };
           if (member.roles.has(nconf.get('STREAMING_ROLE')) !== true && member.roles.has('91854670766559232') === true) {
