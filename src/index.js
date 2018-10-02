@@ -128,7 +128,7 @@ client.on('ready', () => {
         R.forEach(member => {
           client.guilds.find(guild => guild.id === nconf.get('SERVER')).fetchMember(member.id).then((member) => {
             console.log(member.displayName + member.presence.game);
-          };
+          });
           if (member.roles.has(nconf.get('STREAMING_ROLE')) !== true && member.roles.has('91854670766559232') === true) {
             // member.addRole(nconf.get('STREAMING_ROLE'));
             // console.log('1' + member.displayName + member.presence.game);
