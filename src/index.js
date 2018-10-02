@@ -126,12 +126,9 @@ client.on('ready', () => {
     } else if (nconf.get('STREAMING_GAME')) {
       setInterval(() => {
         R.forEach(member => {
-          client.guilds.find(guild => guild.id === nconf.get('SERVER')).fetchMember(member.id).then((member) => {
-            console.log(member.displayName + member.presence.game);
-          });
           if (member.roles.has(nconf.get('STREAMING_ROLE')) !== true && member.roles.has('91854670766559232') === true) {
             // member.addRole(nconf.get('STREAMING_ROLE'));
-            // console.log('1' + member.displayName + member.presence.game);
+            console.log('1' + member.displayName + member.presence.game + member.presence.game.type);
             return;
           } else if (member.roles.has(nconf.get('STREAMING_ROLE')) === true) {
             // member.removeRole(nconf.get('STREAMING_ROLE'));
@@ -142,7 +139,7 @@ client.on('ready', () => {
           } else {
             return;
           };
-        }, client.guilds.find(guild => guild.id === nconf.get('SERVER')).members);
+        }, client.guilds.find(guild => guild.id === nconf.get('SERVER')).fetchMembers());
       }, 60000); // 60000 = 1 minute
     } else {
       client.guilds.find(guild => guild.id === nconf.get('SERVER')).fetchMembers();
