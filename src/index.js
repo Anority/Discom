@@ -30,7 +30,6 @@ client.on('ready', () => {
       return;
     } else {
       setInterval(() => {
-        client.channels.find(channel => channel.id === nconf.get('ALMANAX')).fetchMessages().then(console.log);
         client.channels.find(channel => channel.id === nconf.get('ALMANAX')).fetchMessages().then(messages => {
           let text = '';
           let date = new Date();
@@ -40,10 +39,10 @@ client.on('ready', () => {
           if (month < 10) month = `0${month}`;
           if (day < 10) day = `0${day}`;
           let dat = `${year}-${month}-${day}`;
-          if (messages.messages[0]) {
-            let datt = messages.messages[0].content[12] + messages.messages[0].content[13];
+          if (messages.first()) {
+            let datt = messages.first().content[12] + messages.first().content[13];
             if (datt.toString() !== day.toString()) {
-              messages.messages[0].delete();
+              messages.first().delete();
               let options = {
                 uri: 'http://www.krosmoz.com/en/almanax',
                 encoding: 'utf8',
