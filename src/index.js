@@ -125,16 +125,16 @@ client.on('ready', () => {
       return;
     } else if (nconf.get('STREAMING_GAME')) {
       client.guilds.find(guild => guild.id === nconf.get('SERVER')).fetchMembers();
-      setInterval(() => {
-        R.forEach(user => {
-          if (user.roles.has(nconf.get('STREAMING_ROLE')) !== true && user.roles.has('91854670766559232') === true) {
-            const myGuilds = client.guilds;
+      const myGuilds = client.guilds;
   const myGuild = myGuilds.get(nconf('SERVER'));
   const myPresences = myGuild.presences;
   const myPresencesKeys = Array.from(myPresences.keys());
-  const myFiltered = myPresencesKeys.filter(strem);
 
-  console.log(myFiltered.length);
+  console.log(myPresencesKeys);
+      setInterval(() => {
+        R.forEach(user => {
+          if (user.roles.has(nconf.get('STREAMING_ROLE')) !== true && user.roles.has('91854670766559232') === true) {
+            
             // user.addRole(nconf.get('STREAMING_ROLE'));
             // console.log('1' + user.displayName + user.presence.game.name + user.presence.game.type);
             return;
