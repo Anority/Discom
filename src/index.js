@@ -126,7 +126,7 @@ client.on('ready', () => {
     } else if (nconf.get('STREAMING_GAME')) {
       client.guilds.find(guild => guild.id === nconf.get('SERVER')).fetchMembers();
       const myGuilds = client.guilds;
-  const myGuild = myGuilds.get(nconf('SERVER'));
+  const myGuild = myGuilds.get(nconf.get('SERVER'));
   const myPresences = myGuild.presences;
   const myPresencesKeys = Array.from(myPresences.keys());
 
