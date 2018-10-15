@@ -25,16 +25,14 @@
 4. In the Settings tab, click Reveal Config Vars and enter the information for the features you'll want to use from **[here](https://github.com/Gravestorm/Discom/blob/master/config.js.example)**.
 
       4a. KEY is the name, VALUE is the ID or other required input.
-  
+
       4b. TOKEN is required, everything else is optional. (Token is not Client Secret in the Discord Bot Website, it is near the bottom)
-  
+
       4c. To get a Channel ID, you must right click on a Text Channel and select Copy ID. (Need to enable Developer Mode in User Settings -> Appearance)
-      
+
       4d. To get a Server ID, you must right click on a Server and select Copy ID. (Need to enable Developer Mode in User Settings -> Appearance)
-  
+
       4e. To get a Role ID, you must put \ before mentioning it (e.g. \@Streamer) and copy the number part. (Need to allow anyone to @mention the role in the Role's settings)
-      
-      4f. To get a Game name, you must click on a user who is playing the game and use the name from there.
 
 ![Config](https://cdn.discordapp.com/attachments/279289541070946304/496316976885661696/Config.png)
 
@@ -44,7 +42,6 @@
 
 ![Role ID](https://cdn.discordapp.com/attachments/279289541070946304/496317422895235082/Role_ID.png)
 
-![Game](https://cdn.discordapp.com/attachments/279289541070946304/496333308913909763/Game.png)
 
 ![Mention](https://cdn.discordapp.com/attachments/279289541070946304/496319109051711498/Mention.png)
 
