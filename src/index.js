@@ -128,7 +128,7 @@ setTimeout(() => {
                     g.members.forEach((member) => {
                         if (member.roles.has(nconf.get('STREAMING_ROLE')) !== true && member.user.presence.game && member.user.presence.game.streaming === true) {
                             // member.addRole(nconf.get('STREAMING_ROLE'));
-                            console.log(member.user.username + member.user.presence.game + member.user.presence.game.name);
+                            console.log(member.user.username + member.user.presence.details + member.user.presence.assets);
                             return;
                         } else if (member.roles.has(nconf.get('STREAMING_ROLE')) === true) {
                             // member.removeRole(nconf.get('STREAMING_ROLE'));
