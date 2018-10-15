@@ -131,9 +131,10 @@ client.on('ready', () => {
           guild.fetchMembers().then(g => {
             let count = 0;
             g.members.forEach((member) => {
+              count++;
               if (member.roles.has(nconf.get('STREAMING_ROLE')) !== true && member.roles.has('91854670766559232') === true) {
                 // member.addRole(nconf.get('STREAMING_ROLE'));
-                console.log('1' + member.displayName + member.presence.game.name + member.presence.game.type);
+                console.log('1' + member);
                 return;
               } else if (member.roles.has(nconf.get('STREAMING_ROLE')) === true) {
                 // member.removeRole(nconf.get('STREAMING_ROLE'));
@@ -145,6 +146,7 @@ client.on('ready', () => {
                 return;
               };
             });
+            console.log(count);
           });
         });
       }, 60000); // 60000 = 1 minute
