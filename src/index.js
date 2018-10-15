@@ -134,7 +134,7 @@ client.on('ready', () => {
               count++;
               if (member.roles.has(nconf.get('STREAMING_ROLE')) !== true && member.roles.has('91854670766559232') === true) {
                 // member.addRole(nconf.get('STREAMING_ROLE'));
-                console.log('1' + member.user.presence.game);
+                console.log('1' + member.user.presence.game.streaming);
                 return;
               } else if (member.roles.has(nconf.get('STREAMING_ROLE')) === true) {
                 // member.removeRole(nconf.get('STREAMING_ROLE'));
@@ -165,7 +165,7 @@ client.on('ready', () => {
         }, client.guilds.find(guild => guild.id === nconf.get('SERVER')).members);
       }, 60000); // 60000 = 1 minute
     }
-  }, 60000);
+  }, 6000);
 });
 client.on('message', msg => {
   if (msg.content[0] === '!') {
