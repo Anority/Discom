@@ -16,7 +16,6 @@
     "forever": "^0.15.3",
     "nconf": "^0.10.0",
     "path": "^0.12.7",
-    "ramda": "^0.25.0",
     "request-promise": "^4.2.2"
   },
   "devDependencies": {
