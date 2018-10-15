@@ -128,7 +128,7 @@ client.on('ready', () => {
             let count = 0;
             g.members.forEach((member) => {
               count++;
-              if (member.roles.has(nconf.get('STREAMING_ROLE')) !== true && member.user.presence.game === true && member.user.presence.game.streaming === true) {
+              if (member.roles.has(nconf.get('STREAMING_ROLE')) !== true && member.user.presence.game && member.user.presence.game.streaming === true) {
                 // member.addRole(nconf.get('STREAMING_ROLE'));
                 console.log(member.user.displayName);
                 return;
