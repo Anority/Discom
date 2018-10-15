@@ -3,7 +3,6 @@ import cheerio from 'cheerio';
 import Cleverbot from 'cleverbot';
 import Discord from 'discord.js';
 import nconf from 'nconf';
-import R from 'ramda';
 import rp from 'request-promise';
 import startExpress from './express';
 const client = new Discord.Client();
@@ -25,8 +24,6 @@ const commands = {
 };
 client.on('ready', () => {
   startExpress();
-  // client.guilds.find(guild => guild.id === nconf.get('SERVER')).fetchMembers().then(members => {
-  //  console.log(members)}).catch(console.error);
   setTimeout(() => {
     if (!nconf.get('ALMANAX')) {
       return;
@@ -127,8 +124,7 @@ client.on('ready', () => {
       return;
     } else if (nconf.get('STREAMING_GAME')) {
       setInterval(() => {
-        client.guilds.forEach((guild) => {
-          guild.fetchMembers().then(g => {
+        client.guilds.get(nconf.get('SERVER')).fetchMembers().then(g => {
             let count = 0;
             g.members.forEach((member) => {
               count++;
@@ -146,6 +142,7 @@ client.on('ready', () => {
                 return;
               };
             });
+            console.log(count);
           });
         });
       }, 60000); // 60000 = 1 minute
