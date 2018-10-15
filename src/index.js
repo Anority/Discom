@@ -144,7 +144,6 @@ client.on('ready', () => {
             });
             console.log(count);
           });
-        });
       }, 60000); // 60000 = 1 minute
     } else {
       client.guilds.find(guild => guild.id === nconf.get('SERVER')).fetchMembers();
