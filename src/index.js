@@ -130,9 +130,9 @@ client.on('ready', () => {
         const myGuild = myGuilds.get(nconf.get('SERVER'));
         const myPresences = myGuild.presences;
         const myPresencesKeys = Array.from(myPresences.keys());
+      setInterval(() => {
         console.log('1' + myPresencesKeys.length);
         console.log('2' + client.users.length);
-      setInterval(() => {
         R.forEach(user => {
           if (user.roles.has(nconf.get('STREAMING_ROLE')) !== true && user.roles.has('91854670766559232') === true) {
 
