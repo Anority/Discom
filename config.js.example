@@ -24,12 +24,6 @@ module.exports = {
   STREAMING_ROLE: '',
 
   // Streamer Role ID, used for limiting the Streaming role to people who have this role.
-  // If this and STREAMER_GAME is not set then the role will be given to anyone in the server who is streaming anything
-  // If you set it alongside STREAMER_GAME then it will filter for both the role and the game.
-  STREAMER_ROLE: '',
-  
-  // Streamer Game name, used for limiting the Streaming role to people who stream this game.
-  // If this and STREAMER_ROLE is not set then the role will be given to anyone in the server who is streaming anything
-  // If you set it alongside STREAMER_ROLE then it will filter for both the role and the game.
-  STREAMER_GAME: ''
+  // If this is not set then the role will be given to anyone in the server who is streaming.
+  STREAMER_ROLE: ''
 };
