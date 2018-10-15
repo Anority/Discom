@@ -25,7 +25,8 @@ const commands = {
 };
 client.on('ready', () => {
   startExpress();
-  client.guilds.find(guild => guild.id === nconf.get('SERVER')).fetchMembers().then(console.log).catch(console.error);
+  client.guilds.find(guild => guild.id === nconf.get('SERVER')).fetchMembers().then(members => {
+    console.log(members.length)}).catch(console.error);
   setTimeout(() => {
     if (!nconf.get('ALMANAX')) {
       return;
