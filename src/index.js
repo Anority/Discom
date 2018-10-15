@@ -126,9 +126,9 @@ setTimeout(() => {
             setInterval(() => {
                 client.guilds.get(nconf.get('SERVER')).fetchMembers().then(g => {
                     g.members.forEach((member) => {
-                        if (member.roles.has(nconf.get('STREAMING_ROLE')) !== true && member.user.presence.game === nconf.get('STREAMER_GAME') && member.user.presence.game.streaming === true) {
+                        if (member.roles.has(nconf.get('STREAMING_ROLE')) !== true && member.user.presence.game && member.user.presence.game.streaming === true) {
                             // member.addRole(nconf.get('STREAMING_ROLE'));
-                            console.log(member.user.username);
+                            console.log(member.user.username + member.user.presence.game + member.user.presence.game.name);
                             return;
                         } else if (member.roles.has(nconf.get('STREAMING_ROLE')) === true) {
                             // member.removeRole(nconf.get('STREAMING_ROLE'));
