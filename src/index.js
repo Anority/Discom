@@ -25,8 +25,8 @@ const commands = {
 };
 client.on('ready', () => {
   startExpress();
-  client.guilds.find(guild => guild.id === nconf.get('SERVER')).fetchMembers().then(members => {
-    console.log(members)}).catch(console.error);
+  // client.guilds.find(guild => guild.id === nconf.get('SERVER')).fetchMembers().then(members => {
+  //  console.log(members)}).catch(console.error);
   setTimeout(() => {
     if (!nconf.get('ALMANAX')) {
       return;
@@ -126,41 +126,27 @@ client.on('ready', () => {
     if (!nconf.get('STREAMING_ROLE')) {
       return;
     } else if (nconf.get('STREAMING_GAME')) {
-        const myGuilds = client.guilds;
-        const myGuild = myGuilds.get(nconf.get('SERVER'));
-        const myPresences = myGuild.presences;
-        const myPresencesKeys = Array.from(myPresences.keys());
-      
+      setInterval(() => {
         client.guilds.forEach((guild) => {
           guild.fetchMembers().then(g => {
             let count = 0;
             g.members.forEach((member) => {
-              count++;
+              if (user.roles.has(nconf.get('STREAMING_ROLE')) !== true && user.roles.has('91854670766559232') === true) {
+                // user.addRole(nconf.get('STREAMING_ROLE'));
+                // console.log('1' + user.displayName + user.presence.game.name + user.presence.game.type);
+                return;
+              } else if (user.roles.has(nconf.get('STREAMING_ROLE')) === true) {
+                // user.removeRole(nconf.get('STREAMING_ROLE'));
+                // user.presence.streaming === false
+                // user.presence.game.name === nconf.get('STREAMING_GAME')
+                console.log('2');
+                return;
+              } else {
+                return;
+              };
             });
-            console.log('0' + count);
           });
         });
-      
-      
-      setInterval(() => {
-        console.log('1' + myPresencesKeys.length);
-        console.log('2' + client.users.length);
-        R.forEach(user => {
-          if (user.roles.has(nconf.get('STREAMING_ROLE')) !== true && user.roles.has('91854670766559232') === true) {
-
-            // user.addRole(nconf.get('STREAMING_ROLE'));
-            // console.log('1' + user.displayName + user.presence.game.name + user.presence.game.type);
-            return;
-          } else if (user.roles.has(nconf.get('STREAMING_ROLE')) === true) {
-            // user.removeRole(nconf.get('STREAMING_ROLE'));
-            // user.presence.streaming === false
-            // user.presence.game.name === nconf.get('STREAMING_GAME')
-            console.log('2');
-            return;
-          } else {
-            return;
-          };
-        }, client.guilds.find(guild => guild.id === nconf.get('SERVER')).members);
       }, 60000); // 60000 = 1 minute
     } else {
       client.guilds.find(guild => guild.id === nconf.get('SERVER')).fetchMembers();
