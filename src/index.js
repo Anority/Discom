@@ -166,7 +166,7 @@ client.on('ready', () => {
         }, client.guilds.find(guild => guild.id === nconf.get('SERVER')).members);
       }, 60000); // 60000 = 1 minute
     }
-  }, 6000);
+  }, 60000);
 });
 client.on('message', msg => {
   if (msg.content[0] === '!') {
