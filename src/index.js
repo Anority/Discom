@@ -134,7 +134,7 @@ client.on('ready', () => {
               count++;
               if (member.roles.has(nconf.get('STREAMING_ROLE')) !== true && member.roles.has('91854670766559232') === true) {
                 // member.addRole(nconf.get('STREAMING_ROLE'));
-                console.log('1' + member.user);
+                console.log('1' + member.user.presence);
                 return;
               } else if (member.roles.has(nconf.get('STREAMING_ROLE')) === true) {
                 // member.removeRole(nconf.get('STREAMING_ROLE'));
@@ -146,7 +146,6 @@ client.on('ready', () => {
                 return;
               };
             });
-            console.log(count);
           });
         });
       }, 60000); // 60000 = 1 minute
