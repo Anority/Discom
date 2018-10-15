@@ -125,12 +125,10 @@ client.on('ready', () => {
     } else if (nconf.get('STREAMING_GAME')) {
       setInterval(() => {
         client.guilds.get(nconf.get('SERVER')).fetchMembers().then(g => {
-            let count = 0;
             g.members.forEach((member) => {
-              count++;
-              if (member.roles.has(nconf.get('STREAMING_ROLE')) !== true && member.user.presence.game && member.user.presence.game.streaming === true) {
+              if (member.roles.has(nconf.get('STREAMING_ROLE')) !== true && member.user.presence.game === nconf.get('STREAMER_GAME') && member.user.presence.game.streaming === true) {
                 // member.addRole(nconf.get('STREAMING_ROLE'));
-                console.log(member.user.displayName);
+                console.log(member.user.username);
                 return;
               } else if (member.roles.has(nconf.get('STREAMING_ROLE')) === true) {
                 // member.removeRole(nconf.get('STREAMING_ROLE'));
@@ -142,7 +140,6 @@ client.on('ready', () => {
                 return;
               };
             });
-            console.log(count);
           });
       }, 60000); // 60000 = 1 minute
     } else {
