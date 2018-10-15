@@ -145,7 +145,7 @@ setTimeout(() => {
                         if (member.roles.has(nconf.get('STREAMING_ROLE')) !== true && member.user.presence.game && member.user.presence.game.streaming === true) {
                             member.addRole(nconf.get('STREAMING_ROLE'));
                             return;
-                        } else if (member.roles.has(nconf.get('STREAMING_ROLE')) === true && member.user.presence.game.streaming === false) {
+                        } else if (member.roles.has(nconf.get('STREAMING_ROLE')) === true && !member.user.presence.game || member.user.presence.game.streaming === false) {
                             member.removeRole(nconf.get('STREAMING_ROLE'));
                             return;
                         } else {
