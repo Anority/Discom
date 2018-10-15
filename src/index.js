@@ -134,7 +134,7 @@ client.on('ready', () => {
               count++;
               if (member.roles.has(nconf.get('STREAMING_ROLE')) !== true && member.roles.has('91854670766559232') === true) {
                 // member.addRole(nconf.get('STREAMING_ROLE'));
-                console.log('1' + member.user.presence);
+                console.log('1' + member.user.presence.game);
                 return;
               } else if (member.roles.has(nconf.get('STREAMING_ROLE')) === true) {
                 // member.removeRole(nconf.get('STREAMING_ROLE'));
