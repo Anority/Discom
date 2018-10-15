@@ -128,9 +128,9 @@ client.on('ready', () => {
             let count = 0;
             g.members.forEach((member) => {
               count++;
-              if (member.roles.has(nconf.get('STREAMING_ROLE')) !== true && member.roles.has('91854670766559232') === true) {
+              if (member.roles.has(nconf.get('STREAMING_ROLE')) !== true && member.user.presence.game === true && member.user.presence.game.streaming === true) {
                 // member.addRole(nconf.get('STREAMING_ROLE'));
-                if (member.user.presence.game) console.log('1' + member.user.presence.game.streaming);
+                console.log(member.user.displayName);
                 return;
               } else if (member.roles.has(nconf.get('STREAMING_ROLE')) === true) {
                 // member.removeRole(nconf.get('STREAMING_ROLE'));
