@@ -130,6 +130,18 @@ client.on('ready', () => {
         const myGuild = myGuilds.get(nconf.get('SERVER'));
         const myPresences = myGuild.presences;
         const myPresencesKeys = Array.from(myPresences.keys());
+      
+        client.guilds.forEach((guild) => {
+          guild.fetchMembers().then(g => {
+            let count = 0;
+            g.members.forEach((member) => {
+              count++;
+            });
+            console.log('0' + count);
+          });
+        });
+      
+      
       setInterval(() => {
         console.log('1' + myPresencesKeys.length);
         console.log('2' + client.users.length);
