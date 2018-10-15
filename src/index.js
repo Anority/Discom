@@ -122,19 +122,15 @@ setTimeout(() => {
 setTimeout(() => {
         if (!nconf.get('STREAMING_ROLE')) {
             return;
-        } else if (nconf.get('STREAMING_GAME')) {
+        } else if (nconf.get('STREAMER_ROLE')) {
             setInterval(() => {
                 client.guilds.get(nconf.get('SERVER')).fetchMembers().then(g => {
                     g.members.forEach((member) => {
-                        if (member.roles.has(nconf.get('STREAMING_ROLE')) !== true && member.user.presence.game && member.user.presence.game.streaming === true) {
-                            // member.addRole(nconf.get('STREAMING_ROLE'));
-                            console.log(member.user.username + member.user.presence.details + member.user.presence.assets);
+                        if (member.roles.has(nconf.get('STREAMING_ROLE')) !== true && member.roles.has(nconf.get('STREAMER_ROLE')) === true && member.user.presence.game && member.user.presence.game.streaming === true) {
+                            member.addRole(nconf.get('STREAMING_ROLE'));
                             return;
-                        } else if (member.roles.has(nconf.get('STREAMING_ROLE')) === true) {
-                            // member.removeRole(nconf.get('STREAMING_ROLE'));
-                            // member.presence.streaming === false
-                            // member.presence.game.name === nconf.get('STREAMING_GAME')
-                            console.log('2');
+                        } else if (member.roles.has(nconf.get('STREAMING_ROLE')) === true && member.roles.has(nconf.get('STREAMER_ROLE')) === true && member.user.presence.game.streaming === false) {
+                            member.removeRole(nconf.get('STREAMING_ROLE'));
                             return;
                         } else {
                             return;
@@ -143,25 +139,21 @@ setTimeout(() => {
                 });
             }, 60000); // 60000 = 1 minute
         } else {
-          setInterval(() => {
-              client.guilds.get(nconf.get('SERVER')).fetchMembers().then(g => {
-                  g.members.forEach((member) => {
-                      if (member.roles.has(nconf.get('STREAMING_ROLE')) !== true && member.user.presence.game === nconf.get('STREAMER_GAME') && member.user.presence.game.streaming === true) {
-                          // member.addRole(nconf.get('STREAMING_ROLE'));
-                          console.log(member.user.username);
-                          return;
-                      } else if (member.roles.has(nconf.get('STREAMING_ROLE')) === true) {
-                          // member.removeRole(nconf.get('STREAMING_ROLE'));
-                          // member.presence.streaming === false
-                          // member.presence.game.name === nconf.get('STREAMING_GAME')
-                          console.log('2');
-                          return;
-                      } else {
-                          return;
-                      };
-                  });
-              });
-          }, 60000); // 60000 = 1 minute
+            setInterval(() => {
+                client.guilds.get(nconf.get('SERVER')).fetchMembers().then(g => {
+                    g.members.forEach((member) => {
+                        if (member.roles.has(nconf.get('STREAMING_ROLE')) !== true && member.user.presence.game && member.user.presence.game.streaming === true) {
+                            member.addRole(nconf.get('STREAMING_ROLE'));
+                            return;
+                        } else if (member.roles.has(nconf.get('STREAMING_ROLE')) === true && member.user.presence.game.streaming === false) {
+                            member.removeRole(nconf.get('STREAMING_ROLE'));
+                            return;
+                        } else {
+                            return;
+                        };
+                    });
+                });
+            }, 60000); // 60000 = 1 minute
         }
       }, 6000);
 });
