@@ -20,6 +20,16 @@ const commands = {
                 msg.channel.stopTyping();
             });
         }
+    },
+    q: {
+        process: function(client, msg, suffix) {
+            if (msg.member.roles.has(nconf.get('ADMIN') || msg.member.roles.has(nconf.get('MODERATOR')) {
+                if (suffix > 100) suffix = 100;
+                msg.channel.bulkDelete(suffix);
+            } else {
+                return;
+            }
+        }
     }
 };
 client.on('ready', () => {
