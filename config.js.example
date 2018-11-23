@@ -25,5 +25,9 @@ module.exports = {
 
   // Streamer Role ID, used for limiting the Streaming role to people who have this role.
   // If this is not set then the role will be given to anyone in the server who is streaming.
-  STREAMER_ROLE: ''
+  STREAMER_ROLE: '',
+
+  // Admin/Moderator Role IDs, used for limiting the message deleting command to people who have this role.
+  ADMIN: '',
+  MODERATOR: ''
 };
