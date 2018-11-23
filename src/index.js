@@ -23,12 +23,14 @@ const commands = {
     },
     q: {
         process: function(client, msg, suffix) {
-            if (msg.author.roles.has(nconf.get('ADMIN')) || msg.author.roles.has(nconf.get('MODERATOR'))) {
-                if (suffix > 100) suffix = 100;
-                msg.channel.bulkDelete(suffix);
-            } else {
-                return;
-            }
+            client.guilds.get(nconf.get('SERVER')).fetchMembers().then(g => {
+                if (msg.member.roles.has(nconf.get('ADMIN')) || msg.member.roles.has(nconf.get('MODERATOR'))) {
+                    if (suffix > 100) suffix = 100;
+                    msg.channel.bulkDelete(suffix);
+                } else {
+                    return;
+                }
+            });
         }
     }
 };
