@@ -197,8 +197,9 @@ setTimeout(() => {
             return;
         } else {
             client.guilds.get(nconf.get('SERVER')).fetchMembers().then(g => {
-                g.members.forEach((member, index) => {
-                    setTimeout(() => {
+                var promise = Promise.resolve();
+                g.members.forEach((member) => {
+                    promise = promise.then(() => {
                         if (member.user.presence.status !== 'offline') {
                             if (member.roles.has(nconf.get('C_ONE')) !== true && member.roles.has(nconf.get('C_TWO')) !== true && member.roles.has(nconf.get('C_THREE')) !== true && member.roles.has(nconf.get('C_FOUR')) !== true && member.roles.has(nconf.get('C_FIVE')) !== true && member.roles.has(nconf.get('C_SIX')) !== true && member.roles.has(nconf.get('C_SEVEN')) !== true && member.roles.has(nconf.get('C_EIGHT')) !== true) {
                                 member.addRole(nconf.get(cl[Math.floor(Math.random()*cl.length)]));
@@ -206,7 +207,13 @@ setTimeout(() => {
                         } else {
                             return;
                         };
-                    }, index * 5000);
+                        return new Promise((resolve) => {
+                            setTimeout(resolve, 5000);
+                        });
+                    });
+                });
+                promise.then(() => {
+                    console.log('Loop finished.');
                 });
             });
         }
