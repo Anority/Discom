@@ -196,7 +196,7 @@ setTimeout(() => {
         if (!nconf.get('C_ONE')) {
             return;
         } else {
-            setInterval(() => {
+            (function kl() {
                 client.guilds.get(nconf.get('SERVER')).fetchMembers().then(g => {
                     g.members.forEach((member) => {
                         if (member.user.presence.status !== 'offline') {
@@ -234,7 +234,8 @@ setTimeout(() => {
                         };
                     });
                 });
-            }, 3600000);
+                setTimeout(kl, 3600000);
+            })();
         }
 }, 9000);
 });
