@@ -229,7 +229,7 @@ setTimeout(() => {
                             }
                         } else {
                             return;
-                        }
+                        };
                     });
                 });
             }, 60000); // 60000 = 1 minute
