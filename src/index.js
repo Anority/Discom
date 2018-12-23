@@ -199,7 +199,7 @@ setTimeout(() => {
             setInterval(() => {
                 client.guilds.get(nconf.get('SERVER')).fetchMembers().then(g => {
                     g.members.forEach((member) => {
-                        if (member.user.presence.status === 'online') {
+                        if (member.user.presence.status !== 'offline') {
                             if (member.roles.has(nconf.get('C_ONE')) === true) {
                                 member.removeRole(nconf.get('C_ONE'));
                                 member.addRole(nconf.get(cl[Math.floor(Math.random()*cl.length)]));
