@@ -192,32 +192,36 @@ setTimeout(() => {
             }, 60000); // 60000 = 1 minute
         }
 }, 6000);
-setTimeout(() => {
+/*setTimeout(() => {
         if (!nconf.get('C_ONE')) {
             return;
         } else {
             client.guilds.get(nconf.get('SERVER')).fetchMembers().then(g => {
                 var promise = Promise.resolve();
-                    g.members.forEach((member) => {
+                g.members.forEach((member) => {
+                    promise = promise.then(() => {
                         if (member.user.presence.status !== 'offline') {
-                            promise = promise.then(() => {
-                                if (member.roles.has(nconf.get('C_ONE')) !== true && member.roles.has(nconf.get('C_TWO')) !== true && member.roles.has(nconf.get('C_THREE')) !== true && member.roles.has(nconf.get('C_FOUR')) !== true && member.roles.has(nconf.get('C_FIVE')) !== true && member.roles.has(nconf.get('C_SIX')) !== true && member.roles.has(nconf.get('C_SEVEN')) !== true && member.roles.has(nconf.get('C_EIGHT')) !== true) {
-                                    member.addRole(nconf.get(cl[Math.floor(Math.random()*cl.length)]));
-                                }
-                                return new Promise((resolve) => {
-                                    setTimeout(resolve, 2000);
-                                });
-                            });
+                            if (member.roles.has(nconf.get('C_ONE')) !== true && member.roles.has(nconf.get('C_TWO')) !== true && member.roles.has(nconf.get('C_THREE')) !== true && member.roles.has(nconf.get('C_FOUR')) !== true && member.roles.has(nconf.get('C_FIVE')) !== true && member.roles.has(nconf.get('C_SIX')) !== true && member.roles.has(nconf.get('C_SEVEN')) !== true && member.roles.has(nconf.get('C_EIGHT')) !== true) {
+                                member.addRole(nconf.get(cl[Math.floor(Math.random()*cl.length)]));
+                            }
                         } else {
                             return;
                         };
+                        return new Promise((resolve) => {
+                            setTimeout(resolve, 2000);
+                        });
+                    });
                 });
                 promise.then(() => {
                     process.exit(1);
                 });
             });
         }
-}, 9000);
+}, 9000);*/
+});
+client.on('presenceUpdate', newMember => {
+  console.log('1' + newMember.presence);
+  console.log('2' + newMember.user.presence);
 });
 client.on('message', msg => {
     if (msg.content[0] === '!') {
