@@ -198,22 +198,22 @@ setTimeout(() => {
         } else {
             client.guilds.get(nconf.get('SERVER')).fetchMembers().then(g => {
                 var promise = Promise.resolve();
-                g.members.forEach((member) => {
-                    promise = promise.then(() => {
+                    g.members.forEach((member) => {
                         if (member.user.presence.status !== 'offline') {
-                            if (member.roles.has(nconf.get('C_ONE')) !== true && member.roles.has(nconf.get('C_TWO')) !== true && member.roles.has(nconf.get('C_THREE')) !== true && member.roles.has(nconf.get('C_FOUR')) !== true && member.roles.has(nconf.get('C_FIVE')) !== true && member.roles.has(nconf.get('C_SIX')) !== true && member.roles.has(nconf.get('C_SEVEN')) !== true && member.roles.has(nconf.get('C_EIGHT')) !== true) {
-                                member.addRole(nconf.get(cl[Math.floor(Math.random()*cl.length)]));
-                            }
+                            promise = promise.then(() => {
+                                if (member.roles.has(nconf.get('C_ONE')) !== true && member.roles.has(nconf.get('C_TWO')) !== true && member.roles.has(nconf.get('C_THREE')) !== true && member.roles.has(nconf.get('C_FOUR')) !== true && member.roles.has(nconf.get('C_FIVE')) !== true && member.roles.has(nconf.get('C_SIX')) !== true && member.roles.has(nconf.get('C_SEVEN')) !== true && member.roles.has(nconf.get('C_EIGHT')) !== true) {
+                                    member.addRole(nconf.get(cl[Math.floor(Math.random()*cl.length)]));
+                                }
+                                return new Promise((resolve) => {
+                                    setTimeout(resolve, 2000);
+                                });
+                            });
                         } else {
                             return;
                         };
-                        return new Promise((resolve) => {
-                            setTimeout(resolve, 2000);
-                        });
-                    });
                 });
                 promise.then(() => {
-                    console.log('Loop finished.');
+                    process.exit(1);
                 });
             });
         }
