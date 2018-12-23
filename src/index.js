@@ -199,15 +199,15 @@ setTimeout(() => {
             //setInterval(() => {
                 client.guilds.get(nconf.get('SERVER')).fetchMembers().then(g => {
                     g.members.forEach((member) => {
+                        setTimeout(() => {
                         if (member.user.presence.status !== 'offline') {
-                            setTimeout(() => {
                                 if (member.roles.has(nconf.get('C_ONE')) !== true && member.roles.has(nconf.get('C_TWO')) !== true && member.roles.has(nconf.get('C_THREE')) !== true && member.roles.has(nconf.get('C_FOUR')) !== true && member.roles.has(nconf.get('C_FIVE')) !== true && member.roles.has(nconf.get('C_SIX')) !== true && member.roles.has(nconf.get('C_SEVEN')) !== true && member.roles.has(nconf.get('C_EIGHT')) !== true) {
                                     member.addRole(nconf.get(cl[Math.floor(Math.random()*cl.length)]));
                                 }
-                            }, 5000);
                         } else {
                             return;
                         };
+                            }, 10000);
                     });
                 });
             //}, 3600000);
