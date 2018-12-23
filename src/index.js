@@ -220,8 +220,8 @@ setTimeout(() => {
 }, 9000);*/
 });
 client.on('presenceUpdate', newMember => {
-  console.log('1' + newMember.presence);
-  console.log('2' + newMember.user.presence);
+  console.log('1' + newMember.presence.status);
+  console.log('2' + newMember.user.presence.status);
 });
 client.on('message', msg => {
     if (msg.content[0] === '!') {
