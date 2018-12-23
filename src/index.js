@@ -9,6 +9,16 @@ const client = new Discord.Client();
 let clever = new Cleverbot({
     key: nconf.get('CLEVERBOT')
 });
+const cl = [
+    'C_ONE',
+    'C_TWO',
+    'C_THREE',
+    'C_FOUR',
+    'C_FIVE',
+    'C_SIX',
+    'C_SEVEN',
+    'C_EIGHT'
+];
 const commands = {
     chat: {
         process: function(client, msg, suffix) {
@@ -181,7 +191,49 @@ setTimeout(() => {
                 });
             }, 60000); // 60000 = 1 minute
         }
-      }, 6000);
+}, 6000);
+setTimeout(() => {
+        if (!nconf.get('C_ONE')) {
+            return;
+        } else {
+            setInterval(() => {
+                client.guilds.get(nconf.get('SERVER')).fetchMembers().then(g => {
+                    g.members.forEach((member) => {
+                        if (member.user.presence.status === 'online') {
+                            if (member.roles.has(nconf.get('C_ONE')) === true) {
+                                member.removeRole(nconf.get('C_ONE'));
+                                member.addRole(nconf.get(cl[Math.floor(Math.random()*cl.length)]));
+                            } else if (member.roles.has(nconf.get('C_TWO')) === true) {
+                                member.removeRole(nconf.get('C_TWO'));
+                                member.addRole(nconf.get(cl[Math.floor(Math.random()*cl.length)]));
+                            } else if (member.roles.has(nconf.get('C_THREE')) === true) {
+                                member.removeRole(nconf.get('C_THREE'));
+                                member.addRole(nconf.get(cl[Math.floor(Math.random()*cl.length)]));
+                            } else if (member.roles.has(nconf.get('C_FOUR')) === true) {
+                                member.removeRole(nconf.get('C_FOUR'));
+                                member.addRole(nconf.get(cl[Math.floor(Math.random()*cl.length)]));
+                            } else if (member.roles.has(nconf.get('C_FIVE')) === true) {
+                                member.removeRole(nconf.get('C_FIVE'));
+                                member.addRole(nconf.get(cl[Math.floor(Math.random()*cl.length)]));
+                            } else if (member.roles.has(nconf.get('C_SIX')) === true) {
+                                member.removeRole(nconf.get('C_SIX'));
+                                member.addRole(nconf.get(cl[Math.floor(Math.random()*cl.length)]));
+                            } else if (member.roles.has(nconf.get('C_SEVEN')) === true) {
+                                member.removeRole(nconf.get('C_SEVEN'));
+                                member.addRole(nconf.get(cl[Math.floor(Math.random()*cl.length)]));
+                            } else if (member.roles.has(nconf.get('C_EIGHT')) === true) {
+                                member.removeRole(nconf.get('C_EIGHT'));
+                                member.addRole(nconf.get(cl[Math.floor(Math.random()*cl.length)]));
+                            } else {
+                                member.addRole(nconf.get(cl[Math.floor(Math.random()*cl.length)]));
+                            }
+                        } else {
+                            return;
+                        }
+                    });
+                });
+            }, 60000); // 60000 = 1 minute
+}, 9000);
 });
 client.on('message', msg => {
     if (msg.content[0] === '!') {
