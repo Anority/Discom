@@ -200,39 +200,41 @@ setTimeout(() => {
                 client.guilds.get(nconf.get('SERVER')).fetchMembers().then(g => {
                     g.members.forEach((member) => {
                         if (member.user.presence.status !== 'offline') {
-                            if (member.roles.has(nconf.get('C_ONE')) === true) {
-                                member.removeRole(nconf.get('C_ONE'));
-                                member.addRole(nconf.get(cl[Math.floor(Math.random()*cl.length)]));
-                            } else if (member.roles.has(nconf.get('C_TWO')) === true) {
-                                member.removeRole(nconf.get('C_TWO'));
-                                member.addRole(nconf.get(cl[Math.floor(Math.random()*cl.length)]));
-                            } else if (member.roles.has(nconf.get('C_THREE')) === true) {
-                                member.removeRole(nconf.get('C_THREE'));
-                                member.addRole(nconf.get(cl[Math.floor(Math.random()*cl.length)]));
-                            } else if (member.roles.has(nconf.get('C_FOUR')) === true) {
-                                member.removeRole(nconf.get('C_FOUR'));
-                                member.addRole(nconf.get(cl[Math.floor(Math.random()*cl.length)]));
-                            } else if (member.roles.has(nconf.get('C_FIVE')) === true) {
-                                member.removeRole(nconf.get('C_FIVE'));
-                                member.addRole(nconf.get(cl[Math.floor(Math.random()*cl.length)]));
-                            } else if (member.roles.has(nconf.get('C_SIX')) === true) {
-                                member.removeRole(nconf.get('C_SIX'));
-                                member.addRole(nconf.get(cl[Math.floor(Math.random()*cl.length)]));
-                            } else if (member.roles.has(nconf.get('C_SEVEN')) === true) {
-                                member.removeRole(nconf.get('C_SEVEN'));
-                                member.addRole(nconf.get(cl[Math.floor(Math.random()*cl.length)]));
-                            } else if (member.roles.has(nconf.get('C_EIGHT')) === true) {
-                                member.removeRole(nconf.get('C_EIGHT'));
-                                member.addRole(nconf.get(cl[Math.floor(Math.random()*cl.length)]));
-                            } else {
-                                member.addRole(nconf.get(cl[Math.floor(Math.random()*cl.length)]));
-                            }
+                            setTimeout(() => {
+                                if (member.roles.has(nconf.get('C_ONE')) !== true && member.roles.has(nconf.get('C_TWO')) !== true && member.roles.has(nconf.get('C_THREE')) !== true && member.roles.has(nconf.get('C_FOUR')) !== true && member.roles.has(nconf.get('C_FIVE')) !== true && member.roles.has(nconf.get('C_SIX')) !== true && member.roles.has(nconf.get('C_SEVEN')) !== true && member.roles.has(nconf.get('C_EIGHT')) !== true) {
+                                    member.addRole(nconf.get(cl[Math.floor(Math.random()*cl.length)]));
+                                } else if (member.roles.has(nconf.get('C_ONE')) === true) {
+                                    member.removeRole(nconf.get('C_ONE'));
+                                    member.addRole(nconf.get(cl[Math.floor(Math.random()*cl.length)]));
+                                } else if (member.roles.has(nconf.get('C_TWO')) === true) {
+                                    member.removeRole(nconf.get('C_TWO'));
+                                    member.addRole(nconf.get(cl[Math.floor(Math.random()*cl.length)]));
+                                } else if (member.roles.has(nconf.get('C_THREE')) === true) {
+                                    member.removeRole(nconf.get('C_THREE'));
+                                    member.addRole(nconf.get(cl[Math.floor(Math.random()*cl.length)]));
+                                } else if (member.roles.has(nconf.get('C_FOUR')) === true) {
+                                    member.removeRole(nconf.get('C_FOUR'));
+                                    member.addRole(nconf.get(cl[Math.floor(Math.random()*cl.length)]));
+                                } else if (member.roles.has(nconf.get('C_FIVE')) === true) {
+                                    member.removeRole(nconf.get('C_FIVE'));
+                                    member.addRole(nconf.get(cl[Math.floor(Math.random()*cl.length)]));
+                                } else if (member.roles.has(nconf.get('C_SIX')) === true) {
+                                    member.removeRole(nconf.get('C_SIX'));
+                                    member.addRole(nconf.get(cl[Math.floor(Math.random()*cl.length)]));
+                                } else if (member.roles.has(nconf.get('C_SEVEN')) === true) {
+                                    member.removeRole(nconf.get('C_SEVEN'));
+                                    member.addRole(nconf.get(cl[Math.floor(Math.random()*cl.length)]));
+                                } else if (member.roles.has(nconf.get('C_EIGHT')) === true) {
+                                    member.removeRole(nconf.get('C_EIGHT'));
+                                    member.addRole(nconf.get(cl[Math.floor(Math.random()*cl.length)]));
+                                }
+                            }, 5000);
                         } else {
                             return;
                         };
                     });
                 });
-            }, 60000); // 60000 = 1 minute
+            }, 3600000);
         }
 }, 9000);
 });
