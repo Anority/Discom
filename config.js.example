@@ -29,5 +29,15 @@ module.exports = {
 
   // Admin/Moderator Role IDs, used for limiting the message deleting command to people who have this role.
   ADMIN: '',
-  MODERATOR: ''
+  MODERATOR: '',
+
+  // Christmas Lights.
+  C_ONE: '',
+  C_TWO: '',
+  C_THREE: '',
+  C_FOUR: '',
+  C_FIVE: '',
+  C_SIX: '',
+  C_SEVEN: '',
+  C_EIGHT: ''
 };
