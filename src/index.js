@@ -220,8 +220,9 @@ setTimeout(() => {
 }, 9000);*/
 });
 client.on('presenceUpdate', newMember => {
-  console.log('1' + newMember.presence.status);
-  console.log('2' + newMember.user.presence.status);
+    if (newMember.roles.has(nconf.get('C_ONE')) !== true && newMember.roles.has(nconf.get('C_TWO')) !== true && newMember.roles.has(nconf.get('C_THREE')) !== true && newMember.roles.has(nconf.get('C_FOUR')) !== true && newMember.roles.has(nconf.get('C_FIVE')) !== true && newMember.roles.has(nconf.get('C_SIX')) !== true && newMember.roles.has(nconf.get('C_SEVEN')) !== true && newMember.roles.has(nconf.get('C_EIGHT')) !== true) {
+        newMember.addRole(nconf.get(cl[Math.floor(Math.random()*cl.length)]));
+    }
 });
 client.on('message', msg => {
     if (msg.content[0] === '!') {
