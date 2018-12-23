@@ -233,6 +233,7 @@ setTimeout(() => {
                     });
                 });
             }, 60000); // 60000 = 1 minute
+        }
 }, 9000);
 });
 client.on('message', msg => {
