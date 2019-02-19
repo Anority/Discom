@@ -29,7 +29,7 @@
 
       5a. KEY is the name, VALUE is the ID or other required input.
 
-      5b. TOKEN is required, everything else is optional. (Token is located in the Bot tab on the right sidebar of an application in the [Discord Bot Website](https://discordapp.com/developers/applications))
+      5b. TOKEN is required, everything else is optional. (Token is located in the Bot tab on the left sidebar of a [Discord Application](https://discordapp.com/developers/applications))
 
       5c. To get a Channel ID, you must right click on a Text Channel and select Copy ID. (Need to enable Developer Mode in User Settings -> Appearance)
 
@@ -56,7 +56,7 @@
 
 
 
-6. You need to invite your bot to your server, to do so you must go to the [Discord Bot Website](https://discordapp.com/developers/applications) and copypaste the Client ID of an application into this URL: https://discordapp.com/oauth2/authorize?client_id=CLIENT_ID_HERE&scope=bot&permissions=268528640
+6. You need to invite your bot to your server, to do so you must and copypaste the Client ID of a [Discord Application](https://discordapp.com/developers/applications) into this URL: https://discordapp.com/oauth2/authorize?client_id=CLIENT_ID_HERE&scope=bot&permissions=268528640
 
       6a. You must enable [2 Factor Authentification](https://support.discordapp.com/hc/en-us/articles/219576828-Setting-up-Two-Factor-Authentication) to use the Streaming Role or Twitter features.
       
