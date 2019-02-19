@@ -77,3 +77,9 @@
 8. Click on Deploy Branch.
 
 ![Branch](https://cdn.discordapp.com/attachments/279289541070946304/496318363769765913/Branch.png)
+
+
+
+9. To check if the bot is working, you may check the logs in your Heroku app. (Button in the top right)
+
+![Logs](https://cdn.discordapp.com/attachments/279289541070946304/547212773843533858/Logs.png)
